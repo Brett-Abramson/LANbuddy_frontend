@@ -7,6 +7,9 @@ const Add = (props) => {
     const [game, setGame] = useState(emptyGame)
 
     const handleChange = (event) => {
+        setGame({...game, [event.target.name] : event.target.value})
+    }
+    const handleSubmit = (event) => {
         event.preventDefault()
         props.handleCreate(game)
     }

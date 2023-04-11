@@ -9,7 +9,7 @@ const Edit = (props) => {
 
     const handleSubmit = (event) => {
         event.prevent.default()
-        props.handleUpdate(person)
+        props.handleUpdate(game)
     }
 
   return (

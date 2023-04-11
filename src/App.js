@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Add from "./components/games/Add"
-import Edit from "./components/games/Edit"
+import Add from "./components/games/Add";
+import Edit from "./components/games/Edit";
+import Game from "./components/games/Game";
 
 const App = () => {
   let [games, setGames] = useState([]);
@@ -16,48 +17,52 @@ const App = () => {
       .catch((error) => console.error(error));
   };
   const handleCreate = (addGame) => {
-    axios
-      .post("http://localhost:8000/api/games", addGame)
-      .then((response) => {
-        console.log(response)
-        getGames()
-      })
-  }
+    axios.post("http://localhost:8000/api/games", addGame).then((response) => {
+      console.log(response);
+      getGames();
+    });
+  };
   const handleDelete = (event) => {
     axios
       .delete("htt[://localhost:8000/api/games/" + event.target.value)
       .then((response) => {
-        getGames()
-      })
-  }
+        getGames();
+      });
+  };
   const handleUpdate = (editGame) => {
     axios
       .put("http://localhost:8000/api/games/" + editGame.id, editGame)
       .then((response) => {
-        getGames()
-      })  
-  }
+        getGames();
+      });
+  };
 
   useEffect(() => {
     getGames();
   }, []);
 
   return (
-    <>
+    <main>
       <h1>LAN Buddy</h1>
+      {/* navbar sorting by genres? or most recently added games? */}
       <Add handleCreate={handleCreate} />
-      {games.map((game) => {
-        return (
-          <div className="game" key={game.id}>
-            <h3>{game.name}</h3>
+      <div className="games-container">
+        {games.map((game) => {
+          return (
+            <div className="game" key={game.id}>
+              <Game 
+                game={game}
+                handleDelete={handleDelete}
+                getGames={getGames}
+                setGames={setGames}
+                />
 
-            {/* probably move this to it's own component */}
-            <Edit handleUpdate={handleUpdate} game={game}/>
-            <button onClick={handleDelete} value={game.id}>Delete</button>
-          </div>
-        );
-      })}
-    </>
+              {/* probably move this to it's own component */}
+            </div>
+          );
+        })}
+      </div>
+    </main>
   );
 };
 
