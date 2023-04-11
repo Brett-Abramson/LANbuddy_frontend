@@ -35,20 +35,20 @@ const Add = (props) => {
                 />
                 <br />
                 <br />
-                <label htmlFor="image">IMG: </label>
+                <label htmlFor="img">IMG: </label>
                 <input
                     type="text" 
-                    name="image"
-                    value={game.image}
+                    name="img"
+                    value={game.img}
                     onChange={handleChange}
                 />
                 <br />
                 <br />
-                <label htmlFor="genre">Genre: </label>
+                <label htmlFor="game_genre">Genre: </label>
                 <input
                     type="text" 
-                    name="genre"
-                    value={game.genre}
+                    name="game_genre"
+                    value={game.game_genre}
                     onChange={handleChange}
                 />
                 <br />

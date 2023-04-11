@@ -29,6 +29,7 @@ const App = () => {
         getGames();
       });
   };
+  // move this request inside the Edit component
   const handleUpdate = (editGame) => {
     axios
       .put("http://localhost:8000/api/games/" + editGame.id, editGame)
@@ -55,9 +56,7 @@ const App = () => {
                 handleDelete={handleDelete}
                 getGames={getGames}
                 setGames={setGames}
-                />
-
-              {/* probably move this to it's own component */}
+              />
             </div>
           );
         })}
