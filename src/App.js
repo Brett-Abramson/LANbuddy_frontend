@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Add from "./components/games/Add"
+import Edit from "./components/games/Edit"
 
 const App = () => {
   let [games, setGames] = useState([]);
@@ -21,6 +23,13 @@ const App = () => {
         getGames()
       })
   }
+  const handleDelete = (event) => {
+    axios
+      .delete("htt[://localhost:8000/api/games/" + event.target.value)
+      .then((response) => {
+        getGames()
+      })
+  }
 
   useEffect(() => {
     getGames();
@@ -36,6 +45,7 @@ const App = () => {
             <h3>{game.name}</h3>
 
             {/* probably move this to it's own component */}
+            <button onClick={handleDelete} value={game.id}>Delete</button>
           </div>
         );
       })}
