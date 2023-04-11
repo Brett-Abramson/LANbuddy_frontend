@@ -30,6 +30,13 @@ const App = () => {
         getGames()
       })
   }
+  const handleUpdate = (editGame) => {
+    axios
+      .put("http://localhost:8000/api/games/" + editGame.id, editGame)
+      .then((response) => {
+        getGames()
+      })  
+  }
 
   useEffect(() => {
     getGames();
@@ -45,6 +52,7 @@ const App = () => {
             <h3>{game.name}</h3>
 
             {/* probably move this to it's own component */}
+            <Edit handleUpdate={handleUpdate} game={game}/>
             <button onClick={handleDelete} value={game.id}>Delete</button>
           </div>
         );
