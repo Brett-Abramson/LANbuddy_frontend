@@ -12,12 +12,18 @@ const Game = (props) => {
   return (
     <div className="edit-container">
       {edit ? (
+        <>
+        <button onClick={() => {
+          toggleEdit();
+        }}>Go Back</button>
         <Edit
+        game={props.game}
           toggleEdit={toggleEdit}
           setEdit={setEdit}
           handleDelete={props.handleDelete}
           getGames={props.getGames}
         />
+        </>
       ) : (
         <div className="game-card">
           <h2>{props.game.name}</h2>

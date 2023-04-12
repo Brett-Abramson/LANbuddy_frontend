@@ -47,7 +47,7 @@ const App = () => {
     <main>
       <h1>LAN Buddy</h1>
       {/* navbar sorting by genres? or most recently added games? */}
-      <Add handleCreate={handleCreate} />
+      {/* <Add handleCreate={handleCreate} /> */}
       <div className="games-container">
         {games.map((game) => {
           return (
