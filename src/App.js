@@ -4,7 +4,7 @@ import "./style/App.css"
 import Add from "./components/games/Add";
 import Edit from "./components/games/Edit";
 import Game from "./components/games/Game";
-
+import NewAdd from "./components/games/NewAdd";
 const App = () => {
   let [games, setGames] = useState([]);
 
@@ -19,9 +19,9 @@ const App = () => {
   };
   const handleCreate = (addGame) => {
     axios.post("http://localhost:8000/api/games", addGame).then((response) => {
-      console.log(response);
+        console.log(response)
+      })
       getGames();
-    });
   };
   const handleDelete = (event) => {
     axios
@@ -47,7 +47,7 @@ const App = () => {
     <main>
       <h1>LAN Buddy</h1>
       {/* navbar sorting by genres? or most recently added games? */}
-      <Add handleCreate={handleCreate} />
+      <NewAdd handleCreate={handleCreate} />
       <div className="games-container">
         {games.map((game) => {
           return (
