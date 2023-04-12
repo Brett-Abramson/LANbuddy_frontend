@@ -15,7 +15,7 @@ const Add = (props) => {
     }
 
     return (
-        <>
+        <div className="addGame-form-container">
             <form onSubmit={handleSubmit}>
                 <label htmlFor="name">Name: </label>
                 <input
@@ -55,7 +55,7 @@ const Add = (props) => {
                 <br />
                 <button type="submit">Submit</button>
             </form>
-        </>
+        </div>
     )
 }
 

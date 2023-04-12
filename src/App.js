@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import "./style/App.css"
 import Add from "./components/games/Add";
 import Edit from "./components/games/Edit";
 import Game from "./components/games/Game";
