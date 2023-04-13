@@ -10,12 +10,11 @@ const Edit = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault()
         props.handleUpdate(game)
+        props.toggleEdit()
     }
 
   return (
     <>
-      <details>
-        <summary>Edit Game</summary>
         <form onSubmit={handleSubmit}>
           <label htmlFor="name">Name: </label>
           <input
@@ -55,7 +54,6 @@ const Edit = (props) => {
           <br />
           <button type="submit">Submit</button>
         </form>
-      </details>
       <button value={props.game.id} onClick={props.handleDelete}>x</button>
     </>
   );

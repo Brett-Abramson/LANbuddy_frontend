@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 
 
 const Add = (props) => {
-
+    const [showAdd, setShowAdd] = useState(false)
     let emptyGame = { name: "", release_date: "", image: "", game_genre: ""}
     const [game, setGame] = useState(emptyGame)
 
@@ -13,9 +13,12 @@ const Add = (props) => {
         event.preventDefault()
         props.handleCreate(game)
     }
-
+    
     return (
         <div className="addGame-form-container">
+        <button onClick={() => setShowAdd(!showAdd)}>Add Game</button>
+            {showAdd ?
+            <div className="add-modal">
             <form onSubmit={handleSubmit}>
                 <label htmlFor="name">Name: </label>
                 <input
@@ -55,6 +58,8 @@ const Add = (props) => {
                 <br />
                 <button type="submit">Submit</button>
             </form>
+            </div>
+            : null}
         </div>
     )
 }
