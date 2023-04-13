@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Edit from "./Edit";
+import UserList from "../users/UserList";
 
 const Game = (props) => {
 //   const [game, setGame] = useState({ ...props.game });
@@ -18,6 +19,7 @@ const Game = (props) => {
         }}>Go Back</button>
         <Edit
         game={props.game}
+        handleUpdate={props.handleUpdate}
           toggleEdit={toggleEdit}
           setEdit={setEdit}
           handleDelete={props.handleDelete}
