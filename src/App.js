@@ -11,6 +11,7 @@ import Sort from "./components/Sort"
 const App = () => {
   const [games, setGames] = useState([]);
   const [view, setView] = useState(true);
+  
   const getGames = () => {
     axios
       .get("http://localhost:8000/api/games")
@@ -70,7 +71,6 @@ const App = () => {
   return (
     <>
       <h1>LAN Buddy</h1>
-      {/* navbar sorting by genres? or most recently added games? */}
       <Sort 
         games={games}
         getGames={getGames}
