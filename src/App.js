@@ -4,10 +4,12 @@ import "./style/App.css"
 import Add from "./components/games/Add";
 import Edit from "./components/games/Edit";
 import Game from "./components/games/Game";
-import NewAdd from "./components/games/NewAdd";
+import AddUser from "./components/users/AddUser";
+import UserList from "./components/users/UserList";
 const App = () => {
   let [games, setGames] = useState([]);
-
+  const [hideUserAdd, setHideUserAdd] = useState(false)
+  const [view, setView] = useState('games')
   const getGames = () => {
     axios
       .get("http://localhost:8000/api/games")
@@ -23,6 +25,13 @@ const App = () => {
       })
       getGames();
   };
+  const handleUserCreate = (addUser) => {
+    axios.post("http://localhost:8000/api/users", addUser).then((response) => {
+      console.log(response)
+      getGames()
+      setHideUserAdd(!hideUserAdd)
+    })
+  }
   const handleDelete = (event) => {
     axios
       .delete("htt[://localhost:8000/api/games/" + event.target.value)
@@ -30,6 +39,16 @@ const App = () => {
         getGames();
       });
   };
+  const handleUserDelete = (event) => {
+  axios.delete("http://localhost:8000/api/users" + event.target.value.id).then((response) => {
+    getGames();
+  })
+  }
+  const handleUserEdit = (user) => {
+    axios.put("http://localhost:8000/api/users/" + user.id).then((response) => {
+      console.log(response)
+    })
+  }
   // move this request inside the Edit component
   const handleUpdate = (editGame) => {
     axios
@@ -47,7 +66,7 @@ const App = () => {
     <main>
       <h1>LAN Buddy</h1>
       {/* navbar sorting by genres? or most recently added games? */}
-      <NewAdd handleCreate={handleCreate} />
+      
       <div className="games-container">
         {games.map((game) => {
           return (
@@ -55,9 +74,16 @@ const App = () => {
               <Game 
                 game={game}
                 handleDelete={handleDelete}
+                handleUserDelete={handleUserDelete}
+                setView={setView}
                 getGames={getGames}
                 setGames={setGames}
               />
+              <UserList handleUserEdit={handleUserEdit} handleUserDelete={handleUserDelete} game={game} />
+              <button onClick={() => setHideUserAdd(!hideUserAdd)}>Add User</button>
+              {hideUserAdd ? 
+              <AddUser handleUserCreate={handleUserCreate} game={game} />
+              : null}
             </div>
           );
         })}

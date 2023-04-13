@@ -6,7 +6,7 @@ const NewAdd = (props) => {
     
     let emptyUser = { user_name:"", tag:"", availability:"", time_zone:"", skill_level:""}
     const [user, setUser] = useState(emptyUser)
-    let emptyGame = { name: "", release_date: "", img: "", game_genre: ""}
+    let emptyGame = { name: "", release_date: "", img: "", game_genre: "", players:user}
     const [game, setGame] = useState(emptyGame)
     //uses game form items to add data to game fields
     const handleGameChange = (event) => {
@@ -19,16 +19,16 @@ const NewAdd = (props) => {
     //nest user and game data
     const handleCombine = (event) => {
     //add game to game field in user object
-       let newUser = {...user, game:game.id}
+       let newUser = {...user, game:game}
       setUser(newUser)
     //add user to players field in game object
-       let newGame = {...game, players:user.id}
+       let newGame = {...game, players:user}
       setGame(newGame)
-      handleSubmit(event)
+      handleSubmit(newGame, event)
     }
-    const handleSubmit = (event) => {
+    const handleSubmit = (newGame, event) => {
         event.preventDefault()
-        props.handleCreate(game)
+        props.handleCreate(newGame)
     }
 
     return (
@@ -75,7 +75,7 @@ const NewAdd = (props) => {
             </form>
             
             <h3>user</h3>
-            <form>
+            <form onSubmit={handleCombine}>
                 <label htmlFor="user_name">Name: </label>
                 <input
                     type="text" 
