@@ -10,12 +10,11 @@ const Edit = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault()
         props.handleUpdate(game)
+        props.toggleEdit()
     }
 
   return (
     <>
-
-        <summary>Edit Game</summary>
         <form onSubmit={handleSubmit}>
           <label htmlFor="name">Name: </label>
           <input

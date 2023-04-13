@@ -9,6 +9,7 @@ const handleUserChange = (event) => {
 const handleSubmit = (event) =>{
     event.preventDefault()
     props.handleUserCreate(user)
+    props.setHideUserAdd(!props.hideUserAdd)
 }
   return (
     <div>

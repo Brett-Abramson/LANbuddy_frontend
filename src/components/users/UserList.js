@@ -10,8 +10,13 @@ const [showUsers, setShowUsers] = useState(false)
     {props.game.players.map((player) => {
       return(
         <div>
+            <h3>{player.name}</h3>
             <h3>{player.tag}</h3>
-            <UserEdit player={player} handleUserEdit={props.handleUserEdit} />
+            <h3>{player.skill_level}</h3>
+            <h5>Available: <br />
+            {player.availability}</h5>
+            <h5>Time zone: <br />
+            {player.time_zone}</h5>
             <button value={player.id} onClick={props.handleUserDelete}>x</button>
         </div>
       )
