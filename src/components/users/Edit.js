@@ -1,1 +1,0 @@
-// Add.js and Edit.js can be just about the same components. The only difference is the route they need to access. If a different route is passed in (handleCreate/handleUpdate) then the name can be the same in props.handleCreate inside handleSubmit

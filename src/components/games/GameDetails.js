@@ -14,6 +14,7 @@ const GameDetails = (props) => {
   const [hideUserAdd, setHideUserAdd] = useState(false)
   return (
     <div className="detail-page">
+        <h3>{props.game.name}</h3>
         <button onClick={() => props.setView(true)}>back</button>
         <img src={props.game.img} alt="" />        
         <button onClick={toggleEdit}>Edit Game</button>
@@ -30,7 +31,6 @@ const GameDetails = (props) => {
             </>
         : 
         <>
-        <h1>{props.game.name}</h1>
         <h3>{props.game.release_date}</h3>
         <h3>{props.game.game_genre}</h3>
         </>
@@ -40,7 +40,10 @@ const GameDetails = (props) => {
               <AddUser handleUserCreate={props.handleUserCreate} hideUserAdd={hideUserAdd} setHideUserAdd={setHideUserAdd} game={props.game} />
               : null}
         <div className="users-container">
-        <UserList handleUserEdit={props.handleUserEdit} i={props.i} handleUserDelete={props.handleUserDelete} game={props.game} />
+        <UserList 
+        game={props.game}
+        handleUserEdit={props.handleUserEdit}
+        handleUserDelete={props.handleUserDelete}  />
         </div>
     </div>
   )
