@@ -2,10 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./style/App.css"
 import Add from "./components/games/Add";
-import Edit from "./components/games/Edit";
 import Game from "./components/games/Game";
-import AddUser from "./components/users/AddUser";
-import UserList from "./components/users/UserList";
 import GameDetails from "./components/games/GameDetails";
 const App = () => {
   let [games, setGames] = useState([]);
@@ -44,12 +41,12 @@ const App = () => {
     getGames();
   })
   }
-  const handleUserEdit = (user) => {
-    axios.put("http://localhost:8000/api/users/" + user.id, user).then((response) =>{
-    console.log(response)
-    getGames();
-    })
-  }
+  // const handleUserEdit = (user) => {
+  //   axios.put("http://localhost:8000/api/users/" + user.id, user).then((response) =>{
+  //   console.log(response)
+  //   getGames();
+  //   })
+  // }
   // move this request inside the Edit component
   const handleUpdate = (editGame) => {
     axios
