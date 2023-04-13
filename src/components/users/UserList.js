@@ -12,7 +12,7 @@ const [showUsers, setShowUsers] = useState(false)
         <div>
             <h3>{player.tag}</h3>
             <UserEdit player={player} handleUserEdit={props.handleUserEdit} />
-            <button value={player} onClick={props.handleUserDelete}>x</button>
+            <button value={player.id} onClick={props.handleUserDelete}>x</button>
         </div>
       )
     })}

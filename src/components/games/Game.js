@@ -14,6 +14,8 @@ const Game = (props) => {
     <div className="edit-container">
       {edit ? (
         <Edit
+        game={props.game}
+        handleUpdate={props.handleUpdate}
           toggleEdit={toggleEdit}
           setEdit={setEdit}
           handleDelete={props.handleDelete}

@@ -34,19 +34,20 @@ const App = () => {
   }
   const handleDelete = (event) => {
     axios
-      .delete("htt[://localhost:8000/api/games/" + event.target.value)
+      .delete("http://localhost:8000/api/games/" + event.target.value)
       .then((response) => {
         getGames();
       });
   };
   const handleUserDelete = (event) => {
-  axios.delete("http://localhost:8000/api/users" + event.target.value.id).then((response) => {
+  axios.delete("http://localhost:8000/api/users/" + event.target.value).then((response) => {
     getGames();
   })
   }
   const handleUserEdit = (user) => {
-    axios.put("http://localhost:8000/api/users/" + user.id).then((response) => {
-      console.log(response)
+    axios.put("http://localhost:8000/api/users/" + user.id, user).then((response) =>{
+    console.log(response)
+    getGames();
     })
   }
   // move this request inside the Edit component
@@ -73,6 +74,7 @@ const App = () => {
             <div className="game" key={game.id}>
               <Game 
                 game={game}
+                handleUpdate={handleUpdate}
                 handleDelete={handleDelete}
                 handleUserDelete={handleUserDelete}
                 setView={setView}
