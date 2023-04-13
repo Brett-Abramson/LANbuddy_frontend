@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 
 
 const Add = (props) => {
@@ -11,7 +11,9 @@ const Add = (props) => {
     }
     const handleSubmit = (event) => {
         event.preventDefault()
+        setShowAdd(!showAdd)
         props.handleCreate(game)
+        props.setView(true)
     }
     
     return (

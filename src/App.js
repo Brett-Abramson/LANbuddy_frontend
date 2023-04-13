@@ -34,6 +34,7 @@ const App = () => {
       .delete("http://localhost:8000/api/games/" + event.target.value)
       .then((response) => {
         getGames();
+        setView(true)
       });
   };
   const handleUserDelete = (event) => {
@@ -61,10 +62,10 @@ const App = () => {
   }, []);
 
   return (
-    <>
+    <div className="main-container">
       <h1>LAN Buddy</h1>
       {/* navbar sorting by genres? or most recently added games? */}
-      <Add handleCreate={handleCreate} />
+      <Add setView={setView} handleCreate={handleCreate} />
       <div className="games-container">
         {games.map((game, i) => {
           return (
@@ -99,7 +100,7 @@ const App = () => {
           );
         })}
       </div>
-    </>
+    </div>
   );
 };
 

@@ -12,7 +12,7 @@ const handleSubmit = (event) =>{
     props.setHideUserAdd(!props.hideUserAdd)
 }
   return (
-    <div>
+    <div className='add-modal'>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="user_name">Name: </label>
                 <input

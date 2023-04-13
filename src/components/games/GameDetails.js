@@ -18,6 +18,7 @@ const GameDetails = (props) => {
         <img src={props.game.img} alt="" />        
         <button onClick={toggleEdit}>Edit Game</button>
         {edit ?
+        <>
             <Edit
             game={props.game}
             handleUpdate={props.handleUpdate}
@@ -26,16 +27,21 @@ const GameDetails = (props) => {
               handleDelete={props.handleDelete}
               getGames={props.getGames}
             />
-        : null}
+            </>
+        : 
+        <>
         <h1>{props.game.name}</h1>
         <h3>{props.game.release_date}</h3>
         <h3>{props.game.game_genre}</h3>
+        </>
+        }
         <button onClick={() => setHideUserAdd(!hideUserAdd)}>Add User</button>
               {hideUserAdd ? 
               <AddUser handleUserCreate={props.handleUserCreate} hideUserAdd={hideUserAdd} setHideUserAdd={setHideUserAdd} game={props.game} />
               : null}
+        <div className="users-container">
         <UserList handleUserEdit={props.handleUserEdit} i={props.i} handleUserDelete={props.handleUserDelete} game={props.game} />
-    
+        </div>
     </div>
   )
 }
