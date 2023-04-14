@@ -1,15 +1,12 @@
-
-
+img{
+    width:400px;
+    height: 520px;
+}
 .addGame-form-container {
     display: flex;
     justify-content: center;
 }
-.games-container{
-    
-}
 
-.detail-page img{
-}
 .add-modal{
 position:fixed;
 background-color: white;

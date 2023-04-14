@@ -4,7 +4,7 @@ import UserList from "../users/UserList"
 import AddUser from "../users/AddUser"
 import Edit from "./Edit"
 import Grid from '@mui/material/Grid'
-import { Button } from "@mui/material"
+import { Box, Button, Paper, Container } from "@mui/material"
 
 const GameDetails = (props) => {
 
@@ -13,13 +13,24 @@ const GameDetails = (props) => {
   const toggleEdit = () => {
     setEdit(!edit);
   };
-  const [hideUserAdd, setHideUserAdd] = useState(false)
   return (
-    <Grid justifyContent="center" alignItems="center" className="detail-page">
+    <Grid container alignItems="center" className="detail-page">
+      <Grid Item xs={12}>
         <h1>{props.game.name}</h1>
-        <Button onClick={() => props.setView(true)}>back</Button>
-        <img src={props.game.img} alt="" />        
-        <Button onClick={toggleEdit}>Edit Game</Button>
+        </Grid>
+        <Grid container display="row" xs={12}>
+        <Box m={1}>
+        <Button m={1} variant="contained" size="large" onClick={() => props.setView(true)}>back</Button>
+        </Box>
+        <Box m={1}>
+        <Button variant="contained" size="large" onClick={toggleEdit}>Edit Game</Button>
+        </Box>
+        </Grid>
+        <Grid justifyContent="center" md={7} sm={10} maxWidth="sm">
+        <Box>
+        <img src={props.game.img} alt="" />      
+        </Box>
+        </Grid>
         {edit ?
         <>
             <Edit
@@ -33,14 +44,17 @@ const GameDetails = (props) => {
             </>
         : 
         <>
-        <h5>{props.game.release_date}</h5>
-        <h5>{props.game.game_genre}</h5>
+        <Grid Item xs={4}>
+        <Paper>
+        <h3>Released: <br />
+        {props.game.release_date}</h3>
+        <h4> Genre: <br />
+        {props.game.game_genre}</h4>
+        <AddUser handleUserCreate={props.handleUserCreate}game={props.game} />
+        </Paper>
+        </Grid>
         </>
         }
-        <Button onClick={() => setHideUserAdd(!hideUserAdd)}>Add User</Button>
-              {hideUserAdd ? 
-              <AddUser handleUserCreate={props.handleUserCreate} hideUserAdd={hideUserAdd} setHideUserAdd={setHideUserAdd} game={props.game} />
-              : null}
         <UserList 
         game={props.game}
         handleUserEdit={props.handleUserEdit}

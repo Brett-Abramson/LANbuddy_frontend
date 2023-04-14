@@ -1,19 +1,30 @@
+import { Modal, Button, Box, Grid } from '@mui/material'
 import React, {useState} from 'react'
-
 const AddUser = (props) => {
 let emptyUser = { user_name:"", tag:"", availability:"", time_zone:"", skill_level:"", game:props.game}
 const [user, setUser] = useState(emptyUser)
+const [hideUserAdd, setHideUserAdd] = useState(false)
 const handleUserChange = (event) => {
         setUser({...user, [event.target.name]:event.target.value})
     }
+const toggleUserAdd = () => {
+  setHideUserAdd(!hideUserAdd)
+}
 const handleSubmit = (event) =>{
     event.preventDefault()
     props.handleUserCreate(user)
-    props.setHideUserAdd(!props.hideUserAdd)
+    setHideUserAdd(!hideUserAdd)
 }
   return (
-    <div className='add-modal'>
+    <Grid container textAlign="center" justifyContent="center">
+    <Box m={2}>
+        <Button variant='contained' size="large" onClick={toggleUserAdd}>Add User</Button>
+        </Box>
+    <Modal open={hideUserAdd} close={toggleUserAdd} >
             <form onSubmit={handleSubmit}>
+            
+    <Button variant='contained' size="large" onClick={toggleUserAdd}>Back</Button>
+    <br />
                 <label htmlFor="user_name">Name: </label>
                 <input
                     type="text" 
@@ -67,7 +78,8 @@ const handleSubmit = (event) =>{
                 />
                 <button type="submit">Submit</button>
             </form>
-            </div>
+            </Modal>
+            </Grid>
   )
 }
 
