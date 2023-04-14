@@ -67,7 +67,7 @@ const App = () => {
     axios
       .get("http://localhost:8000/api/games/", {
         params: {
-          game_genre: "FPS"
+          game_genre: event.target.value
         }    
       })
       .then((response) =>{
