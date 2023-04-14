@@ -2,10 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./style/App.css";
 import Add from "./components/games/Add";
-import Edit from "./components/games/Edit";
 import Game from "./components/games/Game";
-import AddUser from "./components/users/AddUser";
-import UserList from "./components/users/UserList";
 import GameDetails from "./components/games/GameDetails";
 import Sort from "./components/games/Sort";
 const App = () => {
@@ -39,9 +36,11 @@ const App = () => {
       .delete("http://localhost:8000/api/games/" + event.target.value)
       .then((response) => {
         getGames();
+        setView(true)
       });
   };
   const handleUserDelete = (event) => {
+
     axios
       .delete("http://localhost:8000/api/users/" + event.target.value)
       .then((response) => {
@@ -84,8 +83,9 @@ const App = () => {
   }, []);
 
   return (
-    <>
+    <div className="main-container">
       <h1>LAN Buddy</h1>
+
       <Sort
         games={games}
         getGames={getGames}
@@ -126,7 +126,7 @@ const App = () => {
           );
         })}
       </div>
-    </>
+    </div>
   );
 };
 
