@@ -3,6 +3,8 @@ import React from 'react'
 import UserList from "../users/UserList"
 import AddUser from "../users/AddUser"
 import Edit from "./Edit"
+import Grid from '@mui/material/Grid'
+import { Button } from "@mui/material"
 
 const GameDetails = (props) => {
 
@@ -13,11 +15,11 @@ const GameDetails = (props) => {
   };
   const [hideUserAdd, setHideUserAdd] = useState(false)
   return (
-    <div className="detail-page">
-        <h3>{props.game.name}</h3>
-        <button onClick={() => props.setView(true)}>back</button>
+    <Grid justifyContent="center" alignItems="center" className="detail-page">
+        <h1>{props.game.name}</h1>
+        <Button onClick={() => props.setView(true)}>back</Button>
         <img src={props.game.img} alt="" />        
-        <button onClick={toggleEdit}>Edit Game</button>
+        <Button onClick={toggleEdit}>Edit Game</Button>
         {edit ?
         <>
             <Edit
@@ -31,21 +33,19 @@ const GameDetails = (props) => {
             </>
         : 
         <>
-        <h3>{props.game.release_date}</h3>
-        <h3>{props.game.game_genre}</h3>
+        <h5>{props.game.release_date}</h5>
+        <h5>{props.game.game_genre}</h5>
         </>
         }
-        <button onClick={() => setHideUserAdd(!hideUserAdd)}>Add User</button>
+        <Button onClick={() => setHideUserAdd(!hideUserAdd)}>Add User</Button>
               {hideUserAdd ? 
               <AddUser handleUserCreate={props.handleUserCreate} hideUserAdd={hideUserAdd} setHideUserAdd={setHideUserAdd} game={props.game} />
               : null}
-        <div className="users-container">
         <UserList 
         game={props.game}
         handleUserEdit={props.handleUserEdit}
         handleUserDelete={props.handleUserDelete}  />
-        </div>
-    </div>
+    </Grid>
   )
 }
 

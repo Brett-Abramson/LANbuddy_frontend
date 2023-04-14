@@ -92,7 +92,7 @@ const App = () => {
         setGames={setGames}
         handleFilter={handleFilter}
       />
-      <Add handleCreate={handleCreate} />
+      <Add setView={setView} handleCreate={handleCreate} />
       <div className="games-container">
         {games.map((game, i) => {
           return (
