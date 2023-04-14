@@ -31,12 +31,15 @@ const Sort = (props) => {
         props.setGames(data.filter(filterByGenre))
     }
     // const test = () => console.log(data.filter(filterByGenre))
+    const test = () => {
+        props.handleFilter()
+    }
     return (
         <>
             <button onClick={()=>props.getGames()}>Reset</button>
             <button onClick={sortByName}>Name</button>
             <button onClick={genreFilter}>Distinct Genres</button>
-            {/* <button onClick={test}>Test</button> */}
+            <button onClick={test}>Test</button>
             <div className="genreFilter-input">
                 <form onSubmit={genreFilter}>
                 <input type="text" onChange={handleFilterChange}></input>
