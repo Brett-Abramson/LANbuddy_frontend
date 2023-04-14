@@ -34,7 +34,6 @@ const handleSubmit = (event) =>{
                 />
                 <br />
                 <br />
-                <label htmlFor="availability">availability: </label>
                 <input
                     type="text" 
                     name="availability"
