@@ -77,6 +77,21 @@ const App = () => {
         console.error("Error fechting filtered data:", error);
       });
   };
+  const handleSearch = (param) => {
+    axios
+      .get("http://localhost:8000/api/games/", {
+        params: {
+          search: param,
+        },
+      })
+      .then((response) => {
+        console.log(response.data)
+        setGames(response.data)
+      })
+      .catch((error) => {
+        console.error("Error searching: ", error)
+      })
+  }
 
   useEffect(() => {
     getGames();
@@ -91,6 +106,7 @@ const App = () => {
         getGames={getGames}
         setGames={setGames}
         handleFilter={handleFilter}
+        handleSearch={handleSearch}
       />
       <Add handleCreate={handleCreate} />
       <div className="games-container">
