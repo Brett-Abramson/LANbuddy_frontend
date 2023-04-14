@@ -2,25 +2,13 @@ import React, { useState } from "react"
 
 
 const Sort = (props) => {
-    // const [nameToggle, setNameToggle] = useState(false)
-    const data = [...props.games]
     // ===  used by search    ===
     const [search, setSearch] = useState("")
-    // const genreToggle = () => setGenres(!genres)
     const handleSearch = (event) => {
         setSearch(event.target.value)
     }
-
-    
     // this function currently just reverses the order they are rendered, nothing specific to name...
-    const sortByName = () => {
-        const sortedData = data.sort()
-        // nameToggle ? 
-        // props.setGames(sortedData) :
-        props.setGames(sortedData.reverse())
-    }
 
-    const test = () => console.log(data)
     const filterBy = (event) => {
         props.handleFilter(event)
     }
@@ -28,11 +16,12 @@ const Sort = (props) => {
         event.preventDefault()
         props.handleSearch(search)
     }
+
+    // const test = () => console.log(data)
     return (
         <>
-            <button onClick={test}>Test</button>
+            {/* <button onClick={test}>Test</button> */}
             <button onClick={()=>props.getGames()}>Reset</button>
-            <button onClick={sortByName}>Name</button>
             <div className="select-genre">
                 <form onChange={filterBy}>
                     <label htmlFor="genre-select">Filter by Genre</label>

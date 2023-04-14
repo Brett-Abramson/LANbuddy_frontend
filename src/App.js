@@ -5,6 +5,7 @@ import Add from "./components/games/Add";
 import Game from "./components/games/Game";
 import GameDetails from "./components/games/GameDetails";
 import Sort from "./components/games/Sort";
+import Navbar from "./components/Navbar";
 const App = () => {
   const [games, setGames] = useState([]);
   const [view, setView] = useState(true);
@@ -100,20 +101,18 @@ const App = () => {
   return (
     <div className="main-container">
       <h1>LAN Buddy</h1>
-
-      <Sort
+      <Navbar 
         games={games}
         getGames={getGames}
-        setGames={setGames}
         handleFilter={handleFilter}
         handleSearch={handleSearch}
+        handleCreate={handleCreate}
       />
-      <Add handleCreate={handleCreate} />
       <div className="games-container">
         {games.map((game, i) => {
           return (
-            <>
-              <div className="game" key={game.id}>
+            <div key={game.id}>
+              <div className="game">
                 {view === true ? (
                   <Game
                     game={game}
@@ -138,7 +137,7 @@ const App = () => {
                   </>
                 ) : null}
               </div>
-            </>
+            </div>
           );
         })}
       </div>
