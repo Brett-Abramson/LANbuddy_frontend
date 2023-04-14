@@ -3,6 +3,8 @@ import React from 'react'
 import UserList from "../users/UserList"
 import AddUser from "../users/AddUser"
 import Edit from "./Edit"
+import Grid from '@mui/material/Grid'
+import { Box, Button, Paper, Container } from "@mui/material"
 
 const GameDetails = (props) => {
 
@@ -11,12 +13,24 @@ const GameDetails = (props) => {
   const toggleEdit = () => {
     setEdit(!edit);
   };
-  const [hideUserAdd, setHideUserAdd] = useState(false)
   return (
-    <div className="detail-page">
-        <button onClick={() => props.setView(true)}>back</button>
-        <img src={props.game.img} alt="" />        
-        <button onClick={toggleEdit}>Edit Game</button>
+    <Grid container alignItems="center" className="detail-page">
+      <Grid Item xs={12}>
+        <h1>{props.game.name}</h1>
+        </Grid>
+        <Grid container display="row" xs={12}>
+        <Box m={1}>
+        <Button m={1} variant="contained" size="large" onClick={() => props.setView(true)}>back</Button>
+        </Box>
+        <Box m={1}>
+        <Button variant="contained" size="large" onClick={toggleEdit}>Edit Game</Button>
+        </Box>
+        </Grid>
+        <Grid justifyContent="center" md={7} sm={10} maxWidth="sm">
+        <Box>
+        <img src={props.game.img} alt="" />      
+        </Box>
+        </Grid>
         {edit ?
         <>
             <Edit
@@ -30,19 +44,22 @@ const GameDetails = (props) => {
             </>
         : 
         <>
-        <h1>{props.game.name}</h1>
-        <h3>{props.game.release_date}</h3>
-        <h3>{props.game.game_genre}</h3>
+        <Grid Item xs={4}>
+        <Paper>
+        <h3>Released: <br />
+        {props.game.release_date}</h3>
+        <h4> Genre: <br />
+        {props.game.game_genre}</h4>
+        <AddUser handleUserCreate={props.handleUserCreate}game={props.game} />
+        </Paper>
+        </Grid>
         </>
         }
-        <button onClick={() => setHideUserAdd(!hideUserAdd)}>Add User</button>
-              {hideUserAdd ? 
-              <AddUser handleUserCreate={props.handleUserCreate} hideUserAdd={hideUserAdd} setHideUserAdd={setHideUserAdd} game={props.game} />
-              : null}
-        <div className="users-container">
-        <UserList handleUserEdit={props.handleUserEdit} i={props.i} handleUserDelete={props.handleUserDelete} game={props.game} />
-        </div>
-    </div>
+        <UserList 
+        game={props.game}
+        handleUserEdit={props.handleUserEdit}
+        handleUserDelete={props.handleUserDelete}  />
+    </Grid>
   )
 }
 
