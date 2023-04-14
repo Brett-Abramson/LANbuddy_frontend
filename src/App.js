@@ -16,10 +16,7 @@ const App = () => {
     axios
       .get("http://localhost:8000/api/games")
       .then(
-        (response) => {
-          setGames(response.data)
-          console.log(response)
-        } ,
+        (response) => setGames(response.data),
         (err) => console.log(err)
       )
       .catch((error) => console.error(error));
