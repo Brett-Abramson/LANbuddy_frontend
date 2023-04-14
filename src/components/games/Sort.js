@@ -7,9 +7,9 @@ const Sort = (props) => {
     const [gameGenre, setGameGenre] = useState([])
     let gameGenres = []
     const data = [...props.games]
-    // ===  used by the genre search    ===
-    const [genreSearch, setGenreSearch] = useState("")
+    // ===  used by searchs    ===
     const [nameSearch, setNameSearch] = useState("")
+    const [genreSearch, setGenreSearch] = useState("")
     const genreToggle = () => setGenres(!genres)
     
     const handleGenreSearch = (event) => {
@@ -27,9 +27,11 @@ const Sort = (props) => {
         props.setGames(sortedData.reverse())
     }
     const searchByName = (event) => {
+        props.setGames(data)
         event.preventDefault()
         const filterByName = (item) => {
-            if (item.name.toLowerCase() === nameSearch.toLowerCase()) {return true}
+            if (item.name.toLowerCase().includes(nameSearch.toLowerCase())) {return true}
+            else {props.setGames(data)}
         }
         props.setGames(data.filter(filterByName))
     }
@@ -42,13 +44,14 @@ const Sort = (props) => {
         // runs through the array filtering what doesn't pass our comparison function
         props.setGames(data.filter(filterByGenre))
     }
-    // const test = () => console.log(data.filter(filterByGenre))
+    const test = () => console.log(data)
     const filterBy = (event) => {
         props.handleFilter(event)
         // console.log(event)
     }
     return (
         <>
+            <button onClick={test}>Test</button>
             <button onClick={()=>props.getGames()}>Reset</button>
             <button onClick={sortByName}>Name</button>
             {/* OR button display to pick genres? */}
@@ -59,6 +62,7 @@ const Sort = (props) => {
                 <button onClick={filterBy} value="Strategy">Strategy</button>
                 <button onClick={filterBy} value="MMO">MMO</button>
                 <button onClick={filterBy} value="Sports">Sports</button>
+                <button onClick={filterBy} value="MOBA">MOBA</button>
                 </div>
                 :
                 null}      
@@ -69,9 +73,10 @@ const Sort = (props) => {
                     <select name="genre-select">
                         <option value="">All</option>
                         <option value="FPS">FPS</option>
-                        <option value="Strategy">Strategy</option>
                         <option value="MMO">MMO</option>
+                        <option value="MOBA">MOBA</option>
                         <option value="Sports">Sports</option>
+                        <option value="Strategy">Strategy</option>
                     </select>
                 </form>
             </div>

@@ -7,11 +7,11 @@ import Game from "./components/games/Game";
 import AddUser from "./components/users/AddUser";
 import UserList from "./components/users/UserList";
 import GameDetails from "./components/games/GameDetails";
-import Sort from "./components/games/Sort"
+import Sort from "./components/games/Sort";
 const App = () => {
   const [games, setGames] = useState([]);
   const [view, setView] = useState(true);
-  
+
   const getGames = () => {
     axios
       .get("http://localhost:8000/api/games")
@@ -67,17 +67,17 @@ const App = () => {
     axios
       .get("http://localhost:8000/api/games/", {
         params: {
-          game_genre: event.target.value
-        }    
+          game_genre: event.target.value,
+        },
       })
-      .then((response) =>{
-        console.log(response.data)
-        setGames(response.data)
+      .then((response) => {
+        console.log(response.data);
+        setGames(response.data);
       })
-      .catch(error => {
-        console.error("Error fechting filtered data:", error)
-      })
-  }
+      .catch((error) => {
+        console.error("Error fechting filtered data:", error);
+      });
+  };
 
   useEffect(() => {
     getGames();
@@ -86,7 +86,7 @@ const App = () => {
   return (
     <>
       <h1>LAN Buddy</h1>
-      <Sort 
+      <Sort
         games={games}
         getGames={getGames}
         setGames={setGames}
