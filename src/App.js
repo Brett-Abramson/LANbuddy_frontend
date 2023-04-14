@@ -7,7 +7,7 @@ import Game from "./components/games/Game";
 import AddUser from "./components/users/AddUser";
 import UserList from "./components/users/UserList";
 import GameDetails from "./components/games/GameDetails";
-import Sort from "./components/Sort"
+import Sort from "./components/games/Sort"
 const App = () => {
   const [games, setGames] = useState([]);
   const [view, setView] = useState(true);
@@ -22,14 +22,14 @@ const App = () => {
       .catch((error) => console.error(error));
   };
   const handleCreate = (addGame) => {
-    axios.post("http://localhost:8000/api/games", addGame).then((response) => {
+    axios.post("http://localhost:8000/api/games/", addGame).then((response) => {
       console.log(response);
       getGames();
       setView(true);
     });
   };
   const handleUserCreate = (addUser) => {
-    axios.post("http://localhost:8000/api/users", addUser).then((response) => {
+    axios.post("http://localhost:8000/api/users/", addUser).then((response) => {
       console.log(response);
       getGames();
     });

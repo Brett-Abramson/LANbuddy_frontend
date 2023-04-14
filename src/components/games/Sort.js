@@ -55,8 +55,9 @@ const Sort = (props) => {
              {/* dropdown menu to display different genres? */}
             <div className="select-genre">
                 <form onChange={filterBy}>
-                    <select name="genreSelect">
-                        <option value="">Filter by Genre</option>
+                    <label htmlFor="genre-select">Filter by Genre</label>
+                    <select name="genre-select">
+                        <option value="">All</option>
                         <option value="FPS">FPS</option>
                         <option value="Strategy">Strategy</option>
                         <option value="MMO">MMO</option>

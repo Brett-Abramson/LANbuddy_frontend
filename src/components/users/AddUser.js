@@ -33,12 +33,20 @@ const handleSubmit = (event) =>{
                 <br />
                 <br />
                 <label htmlFor="availability">availability: </label>
-                <input
+                {/* <label htmlFor="availability">availability: </label> */}
+                <select name ="availability" onChange={handleUserChange}>
+                    <option value="mornings">Mornings</option>
+                    <option value="afternoon">Afternoon</option>
+                    <option value="evening">Evenings</option>
+                    <option value="night">Night</option>
+                </select>
+                
+                {/* <input
                     type="text" 
                     name="availability"
                     value={user.availability}
                     onChange={handleUserChange}
-                />
+                /> */}
                 <br />
                 <br />
                 <label htmlFor="time_zone">time zone: </label>
