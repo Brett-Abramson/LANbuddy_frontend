@@ -3,21 +3,14 @@ import React, { useState } from "react"
 
 const Sort = (props) => {
     // const [nameToggle, setNameToggle] = useState(false)
-    const [genres, setGenres] = useState(false)
-    const [gameGenre, setGameGenre] = useState([])
-    let gameGenres = []
     const data = [...props.games]
-    // ===  used by searchs    ===
-    const [nameSearch, setNameSearch] = useState("")
-    const [genreSearch, setGenreSearch] = useState("")
-    const genreToggle = () => setGenres(!genres)
-    
-    const handleGenreSearch = (event) => {
-        setGenreSearch(event.target.value)
+    // ===  used by search    ===
+    const [search, setSearch] = useState("")
+    // const genreToggle = () => setGenres(!genres)
+    const handleSearch = (event) => {
+        setSearch(event.target.value)
     }
-    const handleNameSearch = (event) => {
-        setNameSearch(event.target.value)
-    }
+
     
     // this function currently just reverses the order they are rendered, nothing specific to name...
     const sortByName = () => {
@@ -26,47 +19,20 @@ const Sort = (props) => {
         // props.setGames(sortedData) :
         props.setGames(sortedData.reverse())
     }
-    const searchByName = (event) => {
-        props.setGames(data)
-        event.preventDefault()
-        const filterByName = (item) => {
-            if (item.name.toLowerCase().includes(nameSearch.toLowerCase())) {return true}
-            else {props.setGames(data)}
-        }
-        props.setGames(data.filter(filterByName))
-    }
-    const searchGenre = (event) => {
-        event.preventDefault()
-        // checks to see if genre matches with what user writes
-        const filterByGenre = (item) => {
-            if (item.game_genre.toLowerCase() === genreSearch.toLowerCase()){return true}      
-        }
-        // runs through the array filtering what doesn't pass our comparison function
-        props.setGames(data.filter(filterByGenre))
-    }
+
     const test = () => console.log(data)
     const filterBy = (event) => {
         props.handleFilter(event)
-        // console.log(event)
+    }
+    const searchFor = (event) => {
+        event.preventDefault()
+        props.handleSearch(search)
     }
     return (
         <>
             <button onClick={test}>Test</button>
             <button onClick={()=>props.getGames()}>Reset</button>
             <button onClick={sortByName}>Name</button>
-            {/* OR button display to pick genres? */}
-            <button onClick={genreToggle}>Genres</button>
-            {genres ?
-                <div className="filter-btns">
-                <button onClick={filterBy} value="FPS">FPS</button>
-                <button onClick={filterBy} value="Strategy">Strategy</button>
-                <button onClick={filterBy} value="MMO">MMO</button>
-                <button onClick={filterBy} value="Sports">Sports</button>
-                <button onClick={filterBy} value="MOBA">MOBA</button>
-                </div>
-                :
-                null}      
-             {/* OR dropdown menu to display different genres? */}
             <div className="select-genre">
                 <form onChange={filterBy}>
                     <label htmlFor="genre-select">Filter by Genre</label>
@@ -80,19 +46,10 @@ const Sort = (props) => {
                     </select>
                 </form>
             </div>
-                
-
-                    {/* OR search to display different genres? --this way currently only utilizes the frontend-- */}
-            <div className="searchGenre-input">
-                <form onSubmit={searchGenre}>
-                <input type="text" onChange={handleGenreSearch} />
-                <button>Search By Genre</button>
-                </form>
-            </div>
-            <div className="searchName-input">
-                <form onSubmit={searchByName}>
-                    <input type="text" onChange={handleNameSearch} />
-                    <button>Search By Name</button>
+            <div className="searchbar">
+                <form onSubmit={searchFor}>
+                    <input type="text" onChange={handleSearch} />
+                    <button>Search</button>
                 </form>
             </div>
         </>
