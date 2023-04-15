@@ -18,4 +18,4 @@ const Game = (props) => {
 
 export default Game;
 
-// each game will house its own users -- run get route in each game component? or pass it in
+
