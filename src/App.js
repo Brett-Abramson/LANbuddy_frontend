@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./style/App.css";
+import "./style/skeleton.css";
+import "./style/normalize.css";
 import Add from "./components/games/Add";
 import Game from "./components/games/Game";
 import GameDetails from "./components/games/GameDetails";
