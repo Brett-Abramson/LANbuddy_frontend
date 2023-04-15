@@ -10,7 +10,7 @@ const UserList = (props) => {
     <Grid container spacing={2}>
     {props.game.players.map((player) => {
       return(
-      <Grid textAlign="center" xs={12} md={4} >
+      <Grid item textAlign="center" xs={12} md={4} >
       <Paper>
       <Box m={2} p={1} >
             <h3>{player.name}</h3>

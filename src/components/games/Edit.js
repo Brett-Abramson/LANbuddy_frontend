@@ -1,3 +1,4 @@
+import { Box, Paper, TextField, Button } from "@mui/material";
 import React, { useState } from "react";
 
 const Edit = (props) => {
@@ -15,9 +16,12 @@ const Edit = (props) => {
 
   return (
     <>
+      <Paper>
+      <Box p={5}>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="name">Name: </label>
-          <input
+          <TextField
+            variant="filled"
+            label="name"
             type="text"
             name="name"
             value={game.name}
@@ -25,8 +29,9 @@ const Edit = (props) => {
           />
           <br />
           <br />
-          <label htmlFor="release_date">Release Date: </label>
-          <input
+          <TextField
+            label="release date"
+            variant="filled"
             type="text"
             name="release_date"
             value={game.release_date}
@@ -34,8 +39,9 @@ const Edit = (props) => {
           />
           <br />
           <br />
-          <label htmlFor="img">IMG: </label>
-          <input
+          <TextField
+            label="image url"
+            variant="filled"
             type="text"
             name="img"
             value={game.img}
@@ -43,8 +49,9 @@ const Edit = (props) => {
           />
           <br />
           <br />
-          <label htmlFor="game_genre">Genre: </label>
-          <input
+          <TextField
+            variant="filled"
+            label="genre"
             type="text"
             name="game_genre"
             value={game.game_genre}
@@ -52,9 +59,15 @@ const Edit = (props) => {
           />
           <br />
           <br />
-          <button type="submit">Submit</button>
+          <Button variant="contained" type="submit">Submit</Button><Button 
+        variant="contained"
+        value={props.game.id} 
+        onClick={props.handleDelete}>
+        delete</Button>
         </form>
-      <button value={props.game.id} onClick={props.handleDelete}>x</button>
+      
+      </Box>
+      </Paper>
     </>
   );
 };

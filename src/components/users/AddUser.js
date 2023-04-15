@@ -1,4 +1,4 @@
-import { Modal, Button, Box, Grid } from '@mui/material'
+import { Modal, Button, Box, Grid, TextField, Paper, MenuItem } from '@mui/material'
 import React, {useState} from 'react'
 const AddUser = (props) => {
 let emptyUser = { user_name:"", tag:"", availability:"", time_zone:"", skill_level:"", game:props.game}
@@ -16,17 +16,25 @@ const handleSubmit = (event) =>{
     setHideUserAdd(!hideUserAdd)
 }
   return (
-    <Grid container textAlign="center" justifyContent="center">
     <Box m={2}>
-        <Button variant='contained' size="large" onClick={toggleUserAdd}>Add User</Button>
-        </Box>
-    <Modal open={hideUserAdd} close={toggleUserAdd} >
-            <form onSubmit={handleSubmit}>
+        <Button variant='contained' size="large" onClick={toggleUserAdd}>Join community</Button>
+    <Modal open={hideUserAdd}>
+    <Grid container justifyContent="center">
+            <Paper>
+            <Box 
+            mt={2}
+            p={2}
+            textAlign="center"
+            onSubmit={handleSubmit}
+            component="form" sx={{
+        '& .MuiTextField-root': { m: 1, width: '25ch' },
+      }}>
             
     <Button variant='contained' size="large" onClick={toggleUserAdd}>Back</Button>
     <br />
-                <label htmlFor="user_name">Name: </label>
-                <input
+                <TextField
+                    variant='filled'
+                    label="name"
                     type="text" 
                     name="user_name"
                     value={user.user_name}
@@ -34,23 +42,28 @@ const handleSubmit = (event) =>{
                 />
                 <br />
                 <br />
-                <label htmlFor="tag">tag: </label>
-                <input
-                    type="text" 
+                <TextField
+                    variant='filled'
+                    type="text"
+                    label="gamer tag"
                     name="tag"
                     value={user.tag}
                     onChange={handleUserChange}
                 />
                 <br />
                 <br />
-                <label htmlFor="availability">availability: </label>
                 {/* <label htmlFor="availability">availability: </label> */}
-                <select name ="availability" onChange={handleUserChange}>
-                    <option value="mornings">Mornings</option>
-                    <option value="afternoon">Afternoon</option>
-                    <option value="evening">Evenings</option>
-                    <option value="night">Night</option>
-                </select>
+                <TextField 
+                select 
+                defaultValue="afternoon"
+                label="availability"
+                name ="availability" 
+                onChange={handleUserChange}>
+                    <MenuItem value="mornings">Mornings</MenuItem>
+                    <MenuItem value="afternoon">Afternoon</MenuItem>
+                    <MenuItem value="evening">Evenings</MenuItem>
+                    <MenuItem value="night">Night</MenuItem>
+                </TextField>
                 
                 {/* <input
                     type="text" 
@@ -60,8 +73,9 @@ const handleSubmit = (event) =>{
                 /> */}
                 <br />
                 <br />
-                <label htmlFor="time_zone">time zone: </label>
-                <input
+                <TextField
+                    variant='filled'
+                    label="time zone"
                     type="text" 
                     name="time_zone"
                     value={user.time_zone}
@@ -69,17 +83,21 @@ const handleSubmit = (event) =>{
                 />
                 <br />
                 <br />
-                <label htmlFor="skill_level">skill level:</label>
-                <input
+                <TextField
+                    variant='filled'
+                    label="skill level"
                     type="text" 
                     name="skill_level"
                     value={user.skill_level}
                     onChange={handleUserChange}
                 />
-                <button type="submit">Submit</button>
-            </form>
-            </Modal>
+                <br />
+                <Button variant='contained' type="submit">Submit</Button>
+            </Box>
+            </Paper>
             </Grid>
+            </Modal>
+            </Box>
   )
 }
 

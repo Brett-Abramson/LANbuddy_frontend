@@ -15,18 +15,18 @@ const GameDetails = (props) => {
   };
   return (
     <Grid container alignItems="center" className="detail-page">
-      <Grid Item xs={12}>
+      <Grid item xs={12}>
         <h1>{props.game.name}</h1>
         </Grid>
-        <Grid container display="row" xs={12}>
+        <Grid item container display="row" xs={12}>
         <Box m={1}>
-        <Button m={1} variant="contained" size="large" onClick={() => props.setView(true)}>back</Button>
+        <Button m={1} variant="contained" size="medium" onClick={() => props.setView(true)}>back</Button>
         </Box>
         <Box m={1}>
-        <Button variant="contained" size="large" onClick={toggleEdit}>Edit Game</Button>
+        <Button variant="contained" size="medium" onClick={toggleEdit}>Edit Game</Button>
         </Box>
         </Grid>
-        <Grid justifyContent="center" md={7} sm={10} maxWidth="sm">
+        <Grid item justifyContent="center" md={7} sm={10} maxWidth="sm">
         <Box>
         <img src={props.game.img} alt="" />      
         </Box>
@@ -44,13 +44,15 @@ const GameDetails = (props) => {
             </>
         : 
         <>
-        <Grid Item xs={4}>
+        <Grid item xs={4}>
         <Paper>
-        <h3>Released: <br />
-        {props.game.release_date}</h3>
-        <h4> Genre: <br />
-        {props.game.game_genre}</h4>
-        <AddUser handleUserCreate={props.handleUserCreate}game={props.game} />
+        <Box p={3}>
+        <h2>Released: <br />
+        {props.game.release_date}</h2>
+        <h2> Genre: <br />
+        {props.game.game_genre}</h2>
+        <AddUser handleUserCreate={props.handleUserCreate} game={props.game} />
+        </Box>
         </Paper>
         </Grid>
         </>
