@@ -9,9 +9,8 @@ const Search = (props) => {
   const [search, setSearch] = useState("");
   const handleSearch = (event) => {
     setSearch(event.target.value);
+    searchFor(event)
   };
-
-
   const searchFor = (event) => {
     event.preventDefault();
     props.handleSearch(search);

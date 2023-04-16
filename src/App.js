@@ -14,7 +14,7 @@ const App = () => {
 
   const getGames = () => {
     axios
-      .get("https://lanbuddy-api.herokuapp.com/api/games/")
+      .get("http://localhost:8000/api/games")
       .then(
         (response) => setGames(response.data),
         (err) => console.log(err)
@@ -23,7 +23,7 @@ const App = () => {
   };
   const handleCreate = (addGame) => {
     axios
-      .post("https://lanbuddy-api.herokuapp.com/api/games/", addGame)
+      .post("http://localhost:8000/api/games", addGame)
       .then((response) => {
         console.log(response);
         getGames();
@@ -32,7 +32,7 @@ const App = () => {
   };
   const handleUserCreate = (addUser) => {
     axios
-      .post("https://lanbuddy-api.herokuapp.com/api/users/", addUser)
+      .post("http://localhost:8000/api/users/", addUser)
       .then((response) => {
         console.log(response);
         getGames();
@@ -40,9 +40,7 @@ const App = () => {
   };
   const handleDelete = (event) => {
     axios
-      .delete(
-        "https://lanbuddy-api.herokuapp.com/api/games/" + event.target.value
-      )
+      .delete("http://localhost:8000/api/games/" + event.target.value)
       .then((response) => {
         getGames();
         setView(true);
@@ -50,9 +48,7 @@ const App = () => {
   };
   const handleUserDelete = (event) => {
     axios
-      .delete(
-        "https://lanbuddy-api.herokuapp.com/api/users/" + event.target.value
-      )
+      .delete("http://localhost:8000/api/users/" + event.target.value)
       .then((response) => {
         getGames();
       });
@@ -68,7 +64,7 @@ const App = () => {
   const handleUpdate = (editGame) => {
     axios
       .put(
-        "https://lanbuddy-api.herokuapp.com/api/games/" + editGame.id,
+        "http://localhost:8000/api/games/" + editGame.id,
         editGame
       )
       .then((response) => {
@@ -77,7 +73,7 @@ const App = () => {
   };
   const handleFilter = (event) => {
     axios
-      .get("https://lanbuddy-api.herokuapp.com/api/games/", {
+      .get("http://localhost:8000/api/games/", {
         params: {
           game_genre: event.target.value,
         },
@@ -92,7 +88,7 @@ const App = () => {
   };
   const handleSearch = (param) => {
     axios
-      .get("https://lanbuddy-api.herokuapp.com/api/games/", {
+      .get("http://localhost:8000/api/games/", {
         params: {
           search: param,
         },
