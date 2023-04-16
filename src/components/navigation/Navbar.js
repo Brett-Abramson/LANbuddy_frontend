@@ -10,7 +10,7 @@ const Navbar = (props) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar>
-        <Toolbar disableGutters={false}>
+        <Toolbar disableGutters={true}>
           <Grid container spacing={6} sx={{ flexGrow: 1 }}>
             <Grid xs>
               <Box

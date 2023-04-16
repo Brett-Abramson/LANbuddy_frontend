@@ -6,14 +6,22 @@ import Box from "@mui/material/Box"
 import Stack from "@mui/material/Stack"
 
 const Search = (props) => {
-  const [search, setSearch] = useState("");
-  const handleSearch = (event) => {
-    setSearch(event.target.value);
-    searchFor(event)
+  // const [search, setSearch] = useState("");
+  const [searchTimeout, setSearchTimeout] = useState(null)
+
+  const searchFor = (value) => {
+    // event.preventDefault();
+    clearTimeout(searchTimeout)
+    const timeout = setTimeout(() => {
+      props.handleSearch(value);
+    }, 300)
+    setSearchTimeout(timeout)
   };
-  const searchFor = (event) => {
-    event.preventDefault();
-    props.handleSearch(search);
+  const handleSearch = (event) => {
+    // bypassing State has cancelled the keystroke lag
+    const targetValue = event.target.value
+    // setSearch(targetValue);
+    searchFor(targetValue)
   };
 
 
