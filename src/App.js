@@ -81,7 +81,7 @@ const App = () => {
   };
   const handleSearch = (param) => {
     axios
-      .get("http://localhost:8000/api/games/", {
+      .get("https://lanbuddy-api.herokuapp.com/api/games/", {
         params: {
           search: param,
         },

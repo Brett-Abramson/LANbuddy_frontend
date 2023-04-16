@@ -27,6 +27,7 @@ const Sort = (props) => {
     const searchFor = (event) => {
         event.preventDefault()
         props.handleSearch(search)
+        console.log(search)
     }
     return (
         <>
