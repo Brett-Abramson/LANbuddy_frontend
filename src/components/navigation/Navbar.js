@@ -4,35 +4,44 @@ import Add from "../games/Add";
 import Toolbar from "@mui/material/Toolbar";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Unstable_Grid2";
 
 const Navbar = (props) => {
   return (
-    <>
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar>
-          <Toolbar
-            disableGutters={true}
-            sx={{ justifyContent: "space-between" }}
-          >
-            <Box
-              component="img"
-              sx={{ width: 250, height: 100 }}
-              alt="Logo"
-              src={process.env.PUBLIC_URL + "/LANBuddyLogo.jpg"}
-            ></Box>
-            <Search
-              games={props.games}
-              getGames={props.getGames}
-              handleFilter={props.handleFilter}
-              handleSearch={props.handleSearch}
-            />
-            {/* <Add handleCreate={props.handleCreate} setView={props.setView} /> */}
-          </Toolbar>
-        </AppBar>
-      </Box>
-    </>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar>
+        <Toolbar disableGutters={false}>
+          <Grid container spacing={6} sx={{ flexGrow: 1 }}>
+            <Grid xs>
+              <Box
+                component="img"
+                sx={{ width: 250, height: 75 }}
+                alt="Logo"
+                src={process.env.PUBLIC_URL + "/LANBuddyLogo.jpg"}
+              />
+            </Grid>
+            <Grid xs={6}>
+              <Box sx={{ alignContent:"auto"}}>
+                <Add
+                  handleCreate={props.handleCreate}
+                  setView={props.setView}
+                />
+              </Box>
+            </Grid>
+            <Grid xs mdOffset="auto">
+              <Box sx={{ marginRight: 2 }}>
+                <Search
+                  games={props.games}
+                  getGames={props.getGames}
+                  handleFilter={props.handleFilter}
+                  handleSearch={props.handleSearch}
+                />
+              </Box>
+            </Grid>
+          </Grid>
+        </Toolbar>
+      </AppBar>
+    </Box>
   );
 };
 

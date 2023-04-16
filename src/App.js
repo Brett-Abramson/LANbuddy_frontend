@@ -8,7 +8,6 @@ import { ThemeProvider, CssBaseline, Toolbar } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import lbpalette from "./components/themes/palette";
 
-
 const App = () => {
   const [games, setGames] = useState([]);
   const [view, setView] = useState(true);
@@ -115,20 +114,18 @@ const App = () => {
     <ThemeProvider theme={lbpalette}>
       <CssBaseline />
       <div className="main-container">
-        <Grid xs={12} md={5} lg={4}>
-          <Navbar
-            games={games}
-            getGames={getGames}
-            handleFilter={handleFilter}
-            handleSearch={handleSearch}
-            handleCreate={handleCreate}
-            setView={setView}
-          />
-        </Grid>
-        
-        <Toolbar sx={{ margin: 3}}/>
+        <Navbar
+          games={games}
+          getGames={getGames}
+          handleFilter={handleFilter}
+          handleSearch={handleSearch}
+          handleCreate={handleCreate}
+          setView={setView}
+        />
+        {/* Toolbar below is to make sure nothing is hidden by the fixed Nabar */}
+        <Toolbar sx={{ margin: 3 }} />
 
-        <div className="games-container">
+        <Grid className="games-container">
           {games.map((game, i) => {
             return (
               <div key={game.id}>
@@ -160,7 +157,7 @@ const App = () => {
               </div>
             );
           })}
-        </div>
+        </Grid>
       </div>
     </ThemeProvider>
   );

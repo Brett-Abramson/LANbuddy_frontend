@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import Button from "@mui/material/Button"
 import SearchIcon from '@mui/icons-material/Search';
 import Input from "@mui/material/Input"
+import Box from "@mui/material/Box"
+import Stack from "@mui/material/Stack"
+
 const Search = (props) => {
   const [search, setSearch] = useState("");
   const handleSearch = (event) => {
@@ -17,7 +20,7 @@ const Search = (props) => {
 
   return (
     <>
-      <div className="searchbar">
+      <Stack direction="row" spacing={2}>
         <form onSubmit={searchFor}>
           <Input 
             color="secondary"
@@ -30,7 +33,7 @@ const Search = (props) => {
             <SearchIcon />  
           </Button>
         </form>
-      </div>
+      </Stack>
     </>
   );
 };

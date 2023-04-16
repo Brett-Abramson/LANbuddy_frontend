@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Box, Modal } from "@mui/material"
+import { Box, Modal, Button } from "@mui/material"
 
 const Add = (props) => {
     const [showAdd, setShowAdd] = useState(false)
@@ -18,7 +18,7 @@ const Add = (props) => {
     
     return (
         <div className="addGame-form-container">
-        <button onClick={() => setShowAdd(!showAdd)}>Add Game</button>
+        <Button variant="contained" color="secondary" onClick={() => setShowAdd(!showAdd)}>Add Game</Button>
             {showAdd ?
             <Modal open={showAdd} onClose={() => setShowAdd(!showAdd)}>
             <Box>
