@@ -36,9 +36,9 @@ const Search = (props) => {
             placeholder="I am looking for..."
 
             onChange={handleSearch} />
-          <Button variant="contained" color="secondary">
+          {/* <Button variant="contained" color="secondary">
             <SearchIcon />  
-          </Button>
+          </Button> */}
         </form>
       </Stack>
     </>
