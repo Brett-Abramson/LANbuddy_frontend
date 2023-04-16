@@ -1,5 +1,5 @@
 import { useState } from "react"
-
+import { Box, Modal } from "@mui/material"
 
 const Add = (props) => {
     const [showAdd, setShowAdd] = useState(false)
@@ -20,7 +20,8 @@ const Add = (props) => {
         <div className="addGame-form-container">
         <button onClick={() => setShowAdd(!showAdd)}>Add Game</button>
             {showAdd ?
-            <div className="add-modal">
+            <Modal open={showAdd} onClose={() => setShowAdd(!showAdd)}>
+            <Box>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="name">Name: </label>
                 <input
@@ -60,7 +61,8 @@ const Add = (props) => {
                 <br />
                 <button type="submit">Submit</button>
             </form>
-            </div>
+            </Box>
+            </Modal>
             : null}
         </div>
     )
