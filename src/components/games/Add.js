@@ -1,18 +1,27 @@
-import { useState, useEffect } from "react"
-
+import { useState } from "react"
+import { Box, Modal } from "@mui/material"
 
 const Add = (props) => {
-
+    const [showAdd, setShowAdd] = useState(false)
     let emptyGame = { name: "", release_date: "", image: "", game_genre: ""}
     const [game, setGame] = useState(emptyGame)
 
     const handleChange = (event) => {
-        event.preventDefault()
-        props.handleCreate(game)
+        setGame({...game, [event.target.name] : event.target.value})
     }
-
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        setShowAdd(!showAdd)
+        props.handleCreate(game)
+        props.setView(true)
+    }
+    
     return (
-        <>
+        <div className="addGame-form-container">
+        <button onClick={() => setShowAdd(!showAdd)}>Add Game</button>
+            {showAdd ?
+            <Modal open={showAdd} onClose={() => setShowAdd(!showAdd)}>
+            <Box>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="name">Name: </label>
                 <input
@@ -32,27 +41,30 @@ const Add = (props) => {
                 />
                 <br />
                 <br />
-                <label htmlFor="image">IMG: </label>
+                <label htmlFor="img">IMG: </label>
                 <input
                     type="text" 
-                    name="image"
-                    value={game.image}
+                    name="img"
+                    value={game.img}
                     onChange={handleChange}
                 />
                 <br />
                 <br />
-                <label htmlFor="genre">Genre: </label>
+                <label htmlFor="game_genre">Genre: </label>
                 <input
                     type="text" 
-                    name="genre"
-                    value={game.genre}
+                    name="game_genre"
+                    value={game.game_genre}
                     onChange={handleChange}
                 />
                 <br />
                 <br />
                 <button type="submit">Submit</button>
             </form>
-        </>
+            </Box>
+            </Modal>
+            : null}
+        </div>
     )
 }
 

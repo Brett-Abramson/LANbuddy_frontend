@@ -1,24 +1,27 @@
+import { Box, Paper, TextField, Button } from "@mui/material";
 import React, { useState } from "react";
 
 const Edit = (props) => {
-  const [game, setGame] = useState({ ...props.game });
+  const [game, setGame] = useState(props.game);
 
     const handleChange = (event) => {
         setGame({...game, [event.target.name] : event.target.value})
     }
 
     const handleSubmit = (event) => {
-        event.prevent.default()
-        props.handleUpdate(person)
+        event.preventDefault()
+        props.handleUpdate(game)
+        props.toggleEdit()
     }
 
   return (
     <>
-      <details>
-        <summary>Edit Game</summary>
+      <Paper>
+      <Box p={5}>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="name">Name: </label>
-          <input
+          <TextField
+            variant="filled"
+            label="name"
             type="text"
             name="name"
             value={game.name}
@@ -26,8 +29,9 @@ const Edit = (props) => {
           />
           <br />
           <br />
-          <label htmlFor="release_date">Release Date: </label>
-          <input
+          <TextField
+            label="release date"
+            variant="filled"
             type="text"
             name="release_date"
             value={game.release_date}
@@ -35,27 +39,35 @@ const Edit = (props) => {
           />
           <br />
           <br />
-          <label htmlFor="image">IMG: </label>
-          <input
+          <TextField
+            label="image url"
+            variant="filled"
             type="text"
-            name="image"
-            value={game.image}
+            name="img"
+            value={game.img}
             onChange={handleChange}
           />
           <br />
           <br />
-          <label htmlFor="genre">Genre: </label>
-          <input
+          <TextField
+            variant="filled"
+            label="genre"
             type="text"
-            name="genre"
-            value={game.genre}
+            name="game_genre"
+            value={game.game_genre}
             onChange={handleChange}
           />
           <br />
           <br />
-          <button type="submit">Submit</button>
+          <Button variant="contained" type="submit">Submit</Button><Button 
+        variant="contained"
+        value={props.game.id} 
+        onClick={props.handleDelete}>
+        delete</Button>
         </form>
-      </details>
+      
+      </Box>
+      </Paper>
     </>
   );
 };
