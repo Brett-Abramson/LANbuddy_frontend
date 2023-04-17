@@ -4,7 +4,7 @@ import "./style/App.css";
 import Game from "./components/games/Game";
 import GameDetails from "./components/games/GameDetails";
 import Navbar from "./components/navigation/Navbar";
-import { ThemeProvider, CssBaseline, Toolbar } from "@mui/material";
+import { ThemeProvider, CssBaseline, Toolbar, Container } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import lbpalette from "./components/themes/palette";
 
@@ -109,7 +109,7 @@ const App = () => {
   return (
     <ThemeProvider theme={lbpalette}>
       <CssBaseline />
-      <div className="main-container">
+      <Container >
         <Navbar
           games={games}
           getGames={getGames}
@@ -154,7 +154,7 @@ const App = () => {
             );
           })}
         </Grid>
-      </div>
+      </Container>
     </ThemeProvider>
   );
 };
