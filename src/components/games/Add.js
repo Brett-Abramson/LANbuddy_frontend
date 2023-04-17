@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Box, Modal } from "@mui/material"
+import { Box, Button, Grid, Modal, Paper, TextField } from "@mui/material"
 
 const Add = (props) => {
     const [showAdd, setShowAdd] = useState(false)
@@ -18,13 +18,23 @@ const Add = (props) => {
     
     return (
         <div className="addGame-form-container">
-        <button onClick={() => setShowAdd(!showAdd)}>Add Game</button>
+        <Button
+        variant="contained"
+        onClick={() => setShowAdd(!showAdd)}>Add Game</Button>
             {showAdd ?
             <Modal open={showAdd} onClose={() => setShowAdd(!showAdd)}>
-            <Box>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="name">Name: </label>
-                <input
+            <Box mt={3} p={3}>
+            <Grid container justifyContent="center">
+            <Paper>
+            <Box
+            p={3}
+            component="form"
+            onSubmit={handleSubmit}>
+            <Button onClick={() => setShowAdd(!showAdd)}>close</Button>
+            <br />
+                <TextField 
+                    variant="filled"
+                    label="Name"
                     type="text" 
                     name="name"
                     value={game.name}
@@ -32,8 +42,9 @@ const Add = (props) => {
                 />
                 <br />
                 <br />
-                <label htmlFor="release_date">Release Date: </label>
-                <input
+                <TextField
+                    variant="filled"
+                    label="Release Date"
                     type="text" 
                     name="release_date"
                     value={game.release_date}
@@ -41,8 +52,9 @@ const Add = (props) => {
                 />
                 <br />
                 <br />
-                <label htmlFor="img">IMG: </label>
-                <input
+                <TextField
+                    variant="filled"
+                    label="Image URL"
                     type="text" 
                     name="img"
                     value={game.img}
@@ -50,8 +62,9 @@ const Add = (props) => {
                 />
                 <br />
                 <br />
-                <label htmlFor="game_genre">Genre: </label>
-                <input
+                <TextField
+                    variant="filled"
+                    label="Genre"
                     type="text" 
                     name="game_genre"
                     value={game.game_genre}
@@ -59,8 +72,12 @@ const Add = (props) => {
                 />
                 <br />
                 <br />
-                <button type="submit">Submit</button>
-            </form>
+                <Button
+                variant="contained"
+                type="submit">Submit</Button>
+            </Box>
+            </Paper>
+            </Grid>
             </Box>
             </Modal>
             : null}
