@@ -55,11 +55,12 @@ const handleSubmit = (event) =>{
                 {/* <label htmlFor="availability">availability: </label> */}
                 <TextField 
                 select 
+                variant='filled'
                 defaultValue="afternoon"
                 label="availability"
                 name ="availability" 
                 onChange={handleUserChange}>
-                    <MenuItem value="mornings">Mornings</MenuItem>
+                    <MenuItem value="morning">Mornings</MenuItem>
                     <MenuItem value="afternoon">Afternoon</MenuItem>
                     <MenuItem value="evening">Evenings</MenuItem>
                     <MenuItem value="night">Night</MenuItem>
