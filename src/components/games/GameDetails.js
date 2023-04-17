@@ -26,7 +26,7 @@ const GameDetails = (props) => {
         <Button variant="contained" size="medium" onClick={toggleEdit}>Edit Game</Button>
         </Box>
         </Grid>
-        <Grid item justifyContent="center" md={7} sm={10} maxWidth="sm">
+        <Grid container justifyContent="center" md={6} xs={12} maxWidth="sm">
         <Box>
         <img src={props.game.img} alt="" />      
         </Box>
@@ -44,7 +44,7 @@ const GameDetails = (props) => {
             </>
         : 
         <>
-        <Grid item xs={4}>
+        <Grid item md={4} xs={12}>
         <Paper>
         <Box p={3}>
         <h2>Released: <br />
