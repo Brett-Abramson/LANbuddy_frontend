@@ -4,7 +4,7 @@ import "./style/App.css";
 import Game from "./components/games/Game";
 import GameDetails from "./components/games/GameDetails";
 import Navbar from "./components/navigation/Navbar";
-import { ThemeProvider, CssBaseline, Toolbar, Container } from "@mui/material";
+import { ThemeProvider, CssBaseline, Toolbar, Container, ImageList, ImageListItem } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import lbpalette from "./components/themes/palette";
 
@@ -121,11 +121,11 @@ const App = () => {
         {/* Toolbar below is to make sure nothing is hidden by the fixed Nabar */}
         <Toolbar sx={{ margin: 3 }} />
 
-        <Grid className="games-container">
+        <ImageList variant="masonry" cols={3} gap={10}>
           {games.map((game, i) => {
             return (
-              <div key={game.id}>
-                <div className="game">
+              <>
+                <ImageListItem key={game.id}>
                   {view === true ? (
                     <Game
                       game={game}
@@ -135,7 +135,7 @@ const App = () => {
                       setGames={setGames}
                     />
                   ) : null}
-                </div>
+                </ImageListItem>
                 <div>
                   {view === game.id ? (
                     <>
@@ -150,10 +150,10 @@ const App = () => {
                     </>
                   ) : null}
                 </div>
-              </div>
+              </>
             );
           })}
-        </Grid>
+        </ImageList>
       </Container>
     </ThemeProvider>
   );
