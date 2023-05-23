@@ -10,4 +10,10 @@ LANBuddy is an app designed to make it easier for users to connect with fellow g
 - MaterialUI
 - Axios
 
+## Future Updates
+- User Authentication
+- Forum for easier planning
+- Tournaments
+
+
 Backend API Repo: https://github.com/jdbohac/project_4_backend
